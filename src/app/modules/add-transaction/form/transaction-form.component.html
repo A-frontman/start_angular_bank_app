@@ -1,0 +1,13 @@
+<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <label>From Account</label>
+    <input type="number" formControlName="fromAccount" />
+
+    <label>To Account</label>
+    <input type="number" formControlName="toAccount" />
+
+    <label>Amount</label>
+    <input type="number" formControlName="amount" />
+
+    <button type="submit" class="btn btn-primary mr-1">Submit
+    </button>
+</form>
