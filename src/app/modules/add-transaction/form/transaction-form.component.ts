@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-transaction-form',
-  templateUrl: './transaction-form.component.html',
-  styleUrls: ['./transaction-form.component.scss']
+  selector: "app-transaction-form",
+  templateUrl: "./transaction-form.component.html",
+  styleUrls: ["./transaction-form.component.scss"]
 })
 export class TransactionFormComponent {
   public transactionForm: FormGroup;
@@ -15,9 +15,9 @@ export class TransactionFormComponent {
 
   public createForm(): void {
     this.transactionForm = this.fb.group({
-      fromAccount: [2000],
-      toAccount: [''],
-      amount: [undefined]
+      fromAccount: new FormControl(2000),
+      toAccount: new FormControl(""),
+      amount: new FormControl(undefined)
     });
   }
 
