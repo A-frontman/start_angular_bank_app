@@ -13,6 +13,8 @@ export class DatabaseConnetion implements IDatabaseConnetion {
 
   public create(transaction: ITransactionEntity): boolean {
     // Add Transaction to transactionsTable
+    transactionsTable.default.data.push(transaction);
+    console.error(transactionsTable);
     return true;
   }
 }
