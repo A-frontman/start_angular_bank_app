@@ -26,7 +26,7 @@ export class TransactionRepositoryService {
         amount: transaction.amount
       },
       date: {
-        valueDate: transaction.date
+        valueDate: transaction.date.getDate()
       },
       merchant: {
         name: transaction.account.name,
