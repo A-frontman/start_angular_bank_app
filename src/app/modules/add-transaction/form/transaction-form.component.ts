@@ -23,7 +23,7 @@ export class TransactionFormComponent {
     this.transactionForm = this.fb.group({
       fromAccount: new FormControl(2000),
       toAccountName: new FormControl(""),
-      toAccount: new FormControl(""),
+      toAccount: new FormControl(undefined),
       amount: new FormControl(undefined)
     });
   }
