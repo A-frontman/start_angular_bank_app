@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { BankAccount } from "../../../model/bank-account";
 import { Transaction } from "../../../model/transaction";
 import { TransactionRepositoryService } from "../../database/transaction-repository.service";
@@ -21,16 +21,24 @@ export class TransactionFormComponent {
 
   public createForm(): void {
     this.transactionForm = this.fb.group({
-      fromAccount: [2000],
-      toAccount: [""],
-      amount: [undefined]
+      fromAccount: new FormControl(2000),
+      toAccountName: new FormControl(""),
+      toAccount: new FormControl(""),
+      amount: new FormControl(undefined)
     });
   }
 
   public onSubmit(): void {
-    this.transactionRepoService.addTransaction(
-      new Transaction(new BankAccount("aa", 1), 1, 1)
-    );
+    const toAccountNumber = this.transactionForm.value.toAccount;
+    const toAccountName = this.transactionForm.value.toAccountName;
+    const amount = this.transactionForm.value.amount;
+    const currentDate = new Date();
+    const bankAccount = new BankAccount(toAccountName, toAccountNumber);
+
+    const transaction = new Transaction(bankAccount, amount, currentDate);
+
+    this.transactionRepoService.addTransaction(transaction);
+
     this.clearForm();
   }
 

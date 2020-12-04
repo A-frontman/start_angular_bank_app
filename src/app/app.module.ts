@@ -8,7 +8,6 @@ import { DatabaseModule } from "./modules/database/database.module";
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AddTransactionModule, DatabaseModule],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

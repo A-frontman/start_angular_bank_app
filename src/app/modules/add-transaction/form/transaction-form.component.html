@@ -1,13 +1,16 @@
 <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-    <label>From Account</label>
-    <input type="number" formControlName="fromAccount" />
+	<label>Account Name</label>
+	<input type="number" formControlName="toAccountName" />
 
-    <label>To Account</label>
-    <input type="number" formControlName="toAccount" />
+	<label>From Account</label>
+	<input type="number" formControlName="fromAccount" />
 
-    <label>Amount</label>
-    <input type="number" formControlName="amount" />
+	<label>To Account</label>
+	<input type="number" formControlName="toAccount" />
 
-    <button type="submit" class="btn btn-primary mr-1">Submit
+	<label>Amount</label>
+	<input type="number" formControlName="amount" />
+
+	<button type="submit" class="btn btn-primary mr-1">Submit
     </button>
 </form>
