@@ -1,5 +1,6 @@
 import { Inject, Injectable } from "@angular/core";
-import { Transaction } from "src/app/model/transaction";
+import { BankAccount } from "../../model/bank-account";
+import { Transaction } from "../../model/transaction";
 import { IDatabaseConnetion } from "./database-connection";
 import { ITransactionEntity } from "./i-transaction-entity";
 
@@ -18,6 +19,30 @@ export class TransactionRepositoryService {
     return payload;
   }
 
+  public fetchTransactions(): Transaction[] {
+    let entities: ITransactionEntity[] = [];
+
+    entities = this.database.get();
+
+    const transactions: Transaction[] = [];
+    entities.forEach(entity => {
+      const bankAccount = new BankAccount(
+        entity.merchant.name,
+        entity.merchant.accountNumber
+      );
+
+      const singleTransaction = new Transaction(
+        bankAccount,
+        entity.transaction.amount,
+        entity.date.valueDate
+      );
+
+      transactions.push(singleTransaction);
+    });
+
+    return transactions;
+  }
+
   private convertTransactionToEntity(
     transaction: Transaction
   ): ITransactionEntity {
@@ -26,11 +51,11 @@ export class TransactionRepositoryService {
         amount: transaction.amount
       },
       date: {
-        valueDate: transaction.date.getDate()
+        valueDate: transaction.date
       },
       merchant: {
         name: transaction.account.name,
-        accountNumber: transaction.account.accountNumber.toString()
+        accountNumber: transaction.account.accountNumber
       }
     };
   }

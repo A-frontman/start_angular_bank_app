@@ -5,7 +5,7 @@ export class Transaction {
   public constructor(
     private readonly _account: BankAccount,
     private readonly _amount: number,
-    private readonly _date: Date,
+    private readonly _date: number,
     private readonly _sort = TransactionSort.Outcoming
   ) {}
 
@@ -21,7 +21,7 @@ export class Transaction {
     return amount;
   }
 
-  public get date(): Date {
+  public get date(): number {
     return this._date;
   }
 }

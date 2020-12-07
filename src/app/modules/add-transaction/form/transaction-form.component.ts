@@ -35,7 +35,11 @@ export class TransactionFormComponent {
     const currentDate = new Date();
     const bankAccount = new BankAccount(toAccountName, toAccountNumber);
 
-    const transaction = new Transaction(bankAccount, amount, currentDate);
+    const transaction = new Transaction(
+      bankAccount,
+      amount,
+      currentDate.getDate()
+    );
 
     this.transactionRepoService.addTransaction(transaction);
 
