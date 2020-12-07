@@ -12,10 +12,7 @@ export class TransactionListComponent {
 
   public readonly columnTypes = ColumnType;
   public readonly displayedColumns: ColumnType[] = [
-    ColumnType.Date,
-    ColumnType.BeneficiaryName,
-    ColumnType.BeneficiaryAccount,
-    ColumnType.Amount
+    ColumnType.BeneficiaryName
   ];
 
   public constructor(transactionRepoService: TransactionRepositoryService) {

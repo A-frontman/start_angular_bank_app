@@ -7,6 +7,6 @@ export interface ITransactionEntity {
   };
   merchant: {
     name: string;
-    accountNumber: number;
+    accountNumber: string;
   };
 }
