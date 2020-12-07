@@ -23,8 +23,5 @@ export class TransactionListComponent {
 }
 
 enum ColumnType {
-  Date = "date",
-  BeneficiaryName = "beneficiaryName",
-  BeneficiaryAccount = "beneficiaryAccount",
-  Amount = "amount"
+  BeneficiaryName = "beneficiaryName"
 }
