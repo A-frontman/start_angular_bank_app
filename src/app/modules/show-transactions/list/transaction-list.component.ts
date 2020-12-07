@@ -11,9 +11,7 @@ export class TransactionListComponent {
   private readonly _transactions: Transaction[];
 
   public readonly columnTypes = ColumnType;
-  public readonly displayedColumns: ColumnType[] = [
-    ColumnType.BeneficiaryName
-  ];
+  public readonly displayedColumns: ColumnType[] = [ColumnType.BeneficiaryName];
 
   public constructor(transactionRepoService: TransactionRepositoryService) {
     this._transactions = transactionRepoService.fetchTransactions();
