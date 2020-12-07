@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "start-angular-bank-app"
+    }
+  },
+  "defaultProject": "start-angular-bank-app",
+  "cli": {
+    "analytics": false
+  }
 }
