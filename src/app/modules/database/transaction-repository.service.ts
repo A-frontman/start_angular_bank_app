@@ -1,6 +1,7 @@
 import { Inject, Injectable } from "@angular/core";
 import { BankAccount } from "../../model/bank-account";
 import { Transaction } from "../../model/transaction";
+import { StateResolverService } from '../state-resolver/state-resolver.service';
 import { IDatabaseConnetion } from "./database-connection";
 import { ITransactionEntity } from "./i-transaction-entity";
 
@@ -9,13 +10,19 @@ import { ITransactionEntity } from "./i-transaction-entity";
 })
 export class TransactionRepositoryService {
   public constructor(
-    @Inject("IDatabaseConnetion") private readonly database: IDatabaseConnetion
+    @Inject("IDatabaseConnetion") private readonly database: IDatabaseConnetion,
+    private readonly stateResolverService: StateResolverService
   ) {}
 
   public addTransaction(payload: Transaction): Transaction {
     const entity = this.convertTransactionToEntity(payload);
     // Simulating success
-    this.database.create(entity);
+    const success = this.database.create(entity);
+
+    if (success) {
+      this.stateResolverService.addTransaction(payload);
+    }
+  
     return payload;
   }
 
@@ -37,7 +44,7 @@ export class TransactionRepositoryService {
         entity.date.valueDate
       );
 
-      transactions.push(singleTransaction);
+      this.stateResolverService.addTransaction(singleTransaction);
     });
 
     return transactions;
