@@ -6,7 +6,7 @@ import { Transaction } from 'src/app/model/transaction';
   providedIn: 'root'
 })
 export class StateResolverService {
-  private readonly _transactions: Transaction[];
+  private readonly _transactions: Transaction[] = [];
   public readonly transactionAdded$ = new Subject<Transaction[]>();
 
   public addTransaction(payload: Transaction): void {
