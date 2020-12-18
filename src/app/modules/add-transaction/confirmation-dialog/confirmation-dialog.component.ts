@@ -1,9 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Store } from '@ngxs/store';
-import { Transaction } from 'src/app/model/transaction';
-import { AddTransaction } from 'src/app/modules/state-resolver';
-import { UserService } from 'src/app/services/user.service';
+import { Transaction } from '../../../model/transaction';
 
 @Component({
   selector: 'app-confirmation-dialog',
@@ -12,17 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ConfirmationDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Transaction,
-  private store: Store,
-  private userService: UserService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Transaction) { }
 
   public confirm(): void {
-    this.userService.updateSaldo(this.data.amount);
-    this.store.dispatch(new AddTransaction(this.data))
   }
-
-  public get isValid(): boolean {
-    return this.userService.validateSaldo(this.data.amount);
-  }
-
 }
