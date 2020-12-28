@@ -41,7 +41,7 @@ export class TransactionFormComponent {
       currentDate.getDate()
     );
 
-    this.transactionRepoService.addTransaction(transaction);
+    this.transactionRepoService.T(transaction);
 
     this.clearForm();
   }
