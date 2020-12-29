@@ -1,8 +1,11 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { Subscription } from "rxjs";
 import { BankAccount } from "../../../model/bank-account";
 import { Transaction } from "../../../model/transaction";
 import { TransactionRepositoryService } from "../../database/transaction-repository.service";
+import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
 
 @Component({
   selector: "app-transaction-form",
@@ -11,10 +14,12 @@ import { TransactionRepositoryService } from "../../database/transaction-reposit
 })
 export class TransactionFormComponent {
   public transactionForm: FormGroup;
+  private formSubscription: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
-    private readonly transactionRepoService: TransactionRepositoryService
+    private readonly transactionRepoService: TransactionRepositoryService,
+    public dialog: MatDialog
   ) {
     this.createForm();
   }
@@ -41,13 +46,26 @@ export class TransactionFormComponent {
       currentDate.getDate()
     );
 
-    this.transactionRepoService.addTransaction(transaction);
+    // TODO: check memory leak
+    this.formSubscription.add(this.openDialog(transaction));
 
-    this.clearForm();
+    // this.transactionRepoService.addTransaction(transaction);
+
+    // this.clearForm();
   }
 
   private clearForm(): void {
     this.transactionForm.controls.toAccount.reset();
     this.transactionForm.controls.amount.reset();
+  }
+  
+  private openDialog(transaction: Transaction): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: transaction });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.clearForm();
+      }
+    });
   }
 }
