@@ -14,7 +14,6 @@ import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation
 })
 export class TransactionFormComponent {
   public transactionForm: FormGroup;
-  private formSubscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.createForm();
@@ -42,8 +41,7 @@ export class TransactionFormComponent {
       currentDate.getDate()
     );
 
-    // TODO: check memory leak
-    this.formSubscription.add(this.openDialog(transaction));
+    this.openDialog(transaction);
   }
 
   private clearForm(): void {
@@ -58,9 +56,7 @@ export class TransactionFormComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.clearForm();
-      }
+      this.clearForm();
     });
   }
 }
