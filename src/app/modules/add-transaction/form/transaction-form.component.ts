@@ -16,11 +16,7 @@ export class TransactionFormComponent {
   public transactionForm: FormGroup;
   private formSubscription: Subscription = new Subscription();
 
-  constructor(
-    private fb: FormBuilder,
-    private readonly transactionRepoService: TransactionRepositoryService,
-    public dialog: MatDialog
-  ) {
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.createForm();
   }
 
@@ -48,19 +44,18 @@ export class TransactionFormComponent {
 
     // TODO: check memory leak
     this.formSubscription.add(this.openDialog(transaction));
-
-    // this.transactionRepoService.addTransaction(transaction);
-
-    // this.clearForm();
   }
 
   private clearForm(): void {
+    this.transactionForm.controls.toAccountName.reset();
     this.transactionForm.controls.toAccount.reset();
     this.transactionForm.controls.amount.reset();
   }
-  
+
   private openDialog(transaction: Transaction): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: transaction });
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: transaction
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
