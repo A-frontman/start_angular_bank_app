@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Transaction } from 'src/app/model/transaction';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { Transaction } from "../../model/transaction";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class StateResolverService {
   private readonly _transactions: Transaction[] = [];
-  public readonly transactionAdded$ = new Subject<Transaction[]>();
+  public readonly transactionAdded$ = new BehaviorSubject<Transaction[]>([]);
 
   public addTransaction(payload: Transaction): void {
     this._transactions.push(payload);
     this.transactionAdded$.next(this._transactions);
   }
-
 }
