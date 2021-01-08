@@ -1,24 +1,23 @@
 <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-	<label>Account Name</label>
-	<input type="string" formControlName="toAccountName" />
+	<mat-form-field>
+		<mat-label>Account Name</mat-label>
+		<input matInput type="string" formControlName="toAccountName" />
+  </mat-form-field>
 
-	<label>From Account</label>
-	<input type="number" formControlName="fromAccount" />
+	<mat-form-field>
+		<mat-label>From Account</mat-label>
+		<input matInput type="number" formControlName="fromAccount" />
+  </mat-form-field>
 
-	<label>To Account</label>
-	<input type="number" formControlName="toAccount" />
-
-	<label>Amount</label>
-	<input type="number" formControlName="amount" />
-
-	<button type="submit" class="btn btn-primary mr-1">Submit
-    </button>
-</form>
-
-<p>
-	<mat-form-field appearance="outline">
-		<mat-label>Outline form field</mat-label>
-		<input matInput placeholder="Placeholder">
-		<mat-hint>Hint</mat-hint>
+	<mat-form-field>
+		<mat-label>To Account</mat-label>
+		<input matInput type="number" formControlName="toAccount" />
 	</mat-form-field>
-</p>
+
+	<mat-form-field>
+		<mat-label>Amount</mat-label>
+		<input matInput type="number" formControlName="amount" />
+	</mat-form-field>
+
+	<button type="submit" class="btn btn-primary mr-1">Submit</button>
+</form>
