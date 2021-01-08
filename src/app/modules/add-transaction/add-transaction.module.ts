@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
@@ -19,7 +20,8 @@ import { TransactionFormComponent } from "./form/transaction-form.component";
     NoopAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   declarations: [TransactionFormComponent, ConfirmationDialogComponent],
   exports: [TransactionFormComponent],
