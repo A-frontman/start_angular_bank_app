@@ -8,15 +8,12 @@ describe('TransactionListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransactionListComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TransactionListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      declarations: [TransactionListComponent]
+    }).compileComponents().then(() => {
+        fixture = TestBed.createComponent(TransactionListComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
   });
 
   it('should create', () => {
