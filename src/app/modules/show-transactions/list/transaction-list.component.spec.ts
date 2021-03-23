@@ -15,6 +15,7 @@ fdescribe('TransactionListComponent', () => {
   transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
 
   beforeEach(async () => {
+
     await TestBed.configureTestingModule({
       providers: [
         { provide: TransactionRepositoryService, useValue: transactionRepositoryServiceMock }
@@ -30,7 +31,8 @@ fdescribe('TransactionListComponent', () => {
   });
 
   it('should fetch transaction list when is constructed', () => {
-
+    expect(transactionRepositoryServiceMock.fetchTransactions).toHaveBeenCalled();
+    expect(component).toBeTruthy();
   });
 
   it('should display current transaction list', () => {
