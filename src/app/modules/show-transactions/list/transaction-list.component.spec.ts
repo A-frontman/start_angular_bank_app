@@ -15,6 +15,7 @@ fdescribe('TransactionListComponent', () => {
   transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
 
   beforeEach(async () => {
+    spyOn(transactionRepositoryServiceMock, 'fetchTransactions');
 
     await TestBed.configureTestingModule({
       providers: [
