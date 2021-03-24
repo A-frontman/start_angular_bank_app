@@ -4,16 +4,18 @@ import { TransactionRepositoryService } from '../../database/transaction-reposit
 import { StateResolverService } from '../../state-resolver/state-resolver.service';
 import { TransactionListComponent } from './transaction-list.component';
 
+class TransactionRepositoryServiceMock {
+  public fetchTransactions(): void { };
+}
+
+let transactionAddedMock$: Subject<any>;
+class StateResolverServiceMock {
+  public get transactionAdded$(): Subject<any> {
+    return transactionAddedMock$;
+  }
+}
 
 fdescribe('TransactionListComponent', () => {
-  class TransactionRepositoryServiceMock {
-    public fetchTransactions(): void { };
-  }
-
-  class StateResolverServiceMock {
-    public transactionAdded$ = new Subject();
-  }
-
   let component: TransactionListComponent;
   let fixture: ComponentFixture<TransactionListComponent>;
 
