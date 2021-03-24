@@ -47,6 +47,13 @@ fdescribe('TransactionListComponent', () => {
   });
 
   it('should display current transaction list', () => {
-    
+    stateResolverServiceMock.transactionAdded$.next([{ account: { name: 'Cokolwiek' } }]);
+
+    let tableRows = fixture.nativeElement.querySelectorAll('tr');
+    fixture.detectChanges();
+
+    let row1 = tableRows[1];
+
+    expect(row1.cells[0].innerHTML).toBe(' Cokolwiek ');
   });
 });
