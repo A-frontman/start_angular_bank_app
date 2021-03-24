@@ -5,15 +5,14 @@ import { TransactionRepositoryService } from '../../database/transaction-reposit
 import { StateResolverService } from '../../state-resolver/state-resolver.service';
 import { TransactionListComponent } from './transaction-list.component';
 
+let transactionAddedMock$ = new Subject();
 
 fdescribe('TransactionListComponent', () => {
-  let transactionRepositoryServiceSpy: TransactionRepositoryService;
-  let stateResolverServiceSpy: StateResolverService;
-
   let component: TransactionListComponent;
   let fixture: ComponentFixture<TransactionListComponent>;
 
-  let transactionAddedMock$ = new Subject();
+  let transactionRepositoryServiceSpy: TransactionRepositoryService;
+  let stateResolverServiceSpy: StateResolverService;
 
   beforeEach(async () => {
     transactionRepositoryServiceSpy = jasmine.createSpyObj('TransactionRepositoryService', ['fetchTransactions']);
