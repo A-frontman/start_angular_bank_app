@@ -11,9 +11,9 @@ fdescribe('TransactionListComponent', () => {
   let fixture: ComponentFixture<TransactionListComponent>;
 
   let transactionRepositoryServiceMock: TransactionRepositoryServiceMock;
-  transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
 
   beforeEach(async () => {
+    transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
 
     await TestBed.configureTestingModule({
       providers: [
