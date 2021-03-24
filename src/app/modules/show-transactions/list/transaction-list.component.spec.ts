@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTableModule } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { TransactionRepositoryService } from '../../database/transaction-repository.service';
 import { StateResolverService } from '../../state-resolver/state-resolver.service';
@@ -27,6 +28,7 @@ fdescribe('TransactionListComponent', () => {
     spyOn(transactionRepositoryServiceMock, 'fetchTransactions');
 
     await TestBed.configureTestingModule({
+      imports: [MatTableModule],
       providers: [
         { provide: TransactionRepositoryService, useValue: transactionRepositoryServiceMock },
         { provide: StateResolverService, useValue: stateResolverServiceMock }
