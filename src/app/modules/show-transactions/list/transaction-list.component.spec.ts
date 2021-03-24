@@ -20,12 +20,12 @@ fdescribe('TransactionListComponent', () => {
   let fixture: ComponentFixture<TransactionListComponent>;
 
   let transactionRepositoryServiceMock: TransactionRepositoryServiceMock;
-  transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
-
   let stateResolverServiceMock: StateResolverServiceMock;
-  stateResolverServiceMock = new StateResolverServiceMock();
 
   beforeEach(async () => {
+    transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
+    stateResolverServiceMock = new StateResolverServiceMock();
+
     spyOn(transactionRepositoryServiceMock, 'fetchTransactions');
 
     await TestBed.configureTestingModule({
