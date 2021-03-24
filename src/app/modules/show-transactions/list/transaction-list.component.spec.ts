@@ -15,7 +15,7 @@ fdescribe('TransactionListComponent', () => {
 
   beforeEach(async () => {
     transactionRepositoryServiceSpy = jasmine.createSpyObj('TransactionRepositoryService', ['fetchTransactions']);
-    stateResolverServiceSpy = jasmine.createSpyObj('StateResolverService', [], { transactionAdded$: transactionAddedMock$ });
+    stateResolverServiceSpy = jasmine.createSpyObj('StateResolverService', [], { transactionAdded$: new Subject() });
 
     await TestBed.configureTestingModule({
       imports: [MatTableModule],
@@ -34,12 +34,12 @@ fdescribe('TransactionListComponent', () => {
   });
 
   it('should fetch transaction list when is constructed', () => {
-    expect(transactionRepositoryServiceMock.fetchTransactions).toHaveBeenCalled();
+    expect(transactionRepositoryServiceSpy.fetchTransactions).toHaveBeenCalled();
     expect(component).toBeTruthy();
   });
 
   it('should display current transaction list', () => {
-    stateResolverServiceMock.transactionAdded$.next([{ account: { name: 'Cokolwiek' } }]);
+    stateResolverServiceSpy.transactionAdded$.next([{ account: { name: 'Cokolwiek' } }]);
 
     let tableRows = fixture.nativeElement.querySelectorAll('tr');
     fixture.detectChanges();
