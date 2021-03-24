@@ -9,7 +9,6 @@ fdescribe('TransactionListComponent', () => {
   class TransactionRepositoryServiceMock {
     public fetchTransactions(): void { };
   }
-
   class StateResolverServiceMock {
     public transactionAdded$ = new Subject();
   }
