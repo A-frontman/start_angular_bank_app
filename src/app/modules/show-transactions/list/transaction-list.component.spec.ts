@@ -7,31 +7,21 @@ import { TransactionListComponent } from './transaction-list.component';
 
 
 fdescribe('TransactionListComponent', () => {
-  class TransactionRepositoryServiceMock {
-    public fetchTransactions(): void { };
-  }
-
-  class StateResolverServiceMock {
-    public transactionAdded$ = new Subject();
-  }
+  let transactionRepositoryServiceSpy: TransactionRepositoryService;
+  let stateResolverServiceSpy: StateResolverService;
 
   let component: TransactionListComponent;
   let fixture: ComponentFixture<TransactionListComponent>;
 
-  let transactionRepositoryServiceMock: TransactionRepositoryServiceMock;
-  transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
-
-  let stateResolverServiceMock: StateResolverServiceMock;
-  stateResolverServiceMock = new StateResolverServiceMock();
-
   beforeEach(async () => {
-    spyOn(transactionRepositoryServiceMock, 'fetchTransactions');
+    transactionRepositoryServiceSpy = jasmine.createSpyObj('TransactionRepositoryService', ['fetchTransactions']);
+    stateResolverServiceSpy = jasmine.createSpyObj('StateResolverService', [], { transactionAdded$: transactionAddedMock$ });
 
     await TestBed.configureTestingModule({
       imports: [MatTableModule],
       providers: [
-        { provide: TransactionRepositoryService, useValue: transactionRepositoryServiceMock },
-        { provide: StateResolverService, useValue: stateResolverServiceMock }
+        { provide: TransactionRepositoryService, useValue: transactionRepositoryServiceSpy },
+        { provide: StateResolverService, useValue: stateResolverServiceSpy }
       ],
       declarations: [ TransactionListComponent ]
     }).compileComponents();
