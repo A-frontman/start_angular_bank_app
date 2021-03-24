@@ -2,12 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TransactionRepositoryService } from '../../database/transaction-repository.service';
 import { TransactionListComponent } from './transaction-list.component';
 
+class TransactionRepositoryServiceMock {
+  public fetchTransactions(): void { };
+}
 
 fdescribe('TransactionListComponent', () => {
-  class TransactionRepositoryServiceMock {
-    public fetchTransactions(): void { };
-  }
-
   let component: TransactionListComponent;
   let fixture: ComponentFixture<TransactionListComponent>;
 
