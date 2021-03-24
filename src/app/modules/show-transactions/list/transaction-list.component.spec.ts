@@ -7,7 +7,6 @@ class TransactionRepositoryServiceMock {
 }
 
 fdescribe('TransactionListComponent', () => {
-
   let component: TransactionListComponent;
   let fixture: ComponentFixture<TransactionListComponent>;
 
