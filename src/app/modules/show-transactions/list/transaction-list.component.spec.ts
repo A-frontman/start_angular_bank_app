@@ -9,7 +9,7 @@ class TransactionRepositoryServiceMock {
   public fetchTransactions(): void { };
 }
 
-let transactionAddedMock$: Subject<any>;
+let transactionAddedMock$ = new Subject;
 class StateResolverServiceMock {
   public get transactionAdded$(): Subject<any> {
     return transactionAddedMock$;
