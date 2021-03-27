@@ -24,6 +24,9 @@ fdescribe('TransactionListComponent', () => {
   let stateResolverServiceMock: StateResolverServiceMock;
 
   beforeEach(async () => {
+    transactionRepositoryServiceMock = new TransactionRepositoryServiceMock();
+    stateResolverServiceMock = new StateResolverServiceMock();
+
     spyOn(transactionRepositoryServiceMock, 'fetchTransactions');
 
     await TestBed.configureTestingModule({
